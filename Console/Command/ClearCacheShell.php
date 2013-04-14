@@ -31,7 +31,7 @@ class ClearCacheShell extends Shell {
  * @var ClearCache
  * @access protected
  */
-	var $_Cleaner;
+	protected $_Cleaner;
 
 /**
  * Main shell method
@@ -41,7 +41,7 @@ class ClearCacheShell extends Shell {
  * @return array associative array with cleanup results
  * @access public
  */
-	function main()	{
+	public function main() {
 		$this->files();
 		$this->engines();
 	}
@@ -52,7 +52,7 @@ class ClearCacheShell extends Shell {
  * @return void
  * @access public
  */
-	function engines() {
+	public function engines() {
 		$output = call_user_func_array(array(&$this->_Cleaner, 'engines'), $this->args);
 
 		foreach ($output as $key => $result) {
@@ -66,7 +66,7 @@ class ClearCacheShell extends Shell {
  * @return void
  * @access public
  */
-	function files() {
+	public function files() {
 		$output = call_user_func_array(array(&$this->_Cleaner, 'files'), $this->args);
 
 		foreach ($output as $result => $files) {
@@ -84,10 +84,9 @@ class ClearCacheShell extends Shell {
  * @return void
  * @access public
  */
-	function startup() {
+	public function startup() {
 		App::import('Libs', 'ClearCache.ClearCache');
 		$this->_Cleaner = new ClearCache();
 	}
 
 }
-?>
